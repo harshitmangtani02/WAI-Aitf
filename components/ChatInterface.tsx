@@ -94,21 +94,7 @@ export function ChatInterface({ weatherData }: ChatInterfaceProps) {
         setInputValue('');
       }
     }
-  }, [inputValue, messages, currentWeatherData, language, t]);
-  const fetchWeatherForLocation = useCallback(async (location: string) => {
-    setIsLoadingWeather(true);
-    try {
-      const response = await fetch(`/api/weather?query=${encodeURIComponent(location)}`);
-      if (response.ok) {
-        const weather = await response.json();
-        setCurrentWeatherData(weather);
-      }
-    } catch (error) {
-      console.error('Failed to fetch weather:', error);
-    } finally {
-      setIsLoadingWeather(false);
-    }
-  }, []);
+  }, [inputValue, messages, language]);
 
   const onVoiceResult = useCallback(async (transcript: string) => {
     console.log('Voice result received:', transcript);
